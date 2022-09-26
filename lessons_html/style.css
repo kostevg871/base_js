@@ -1,0 +1,13 @@
+body {
+    font-family: Arial;
+}
+h1 {
+    border: 5px solid rgba(203, 21, 119, 0.5);
+    background: #FFAEDA;
+}
+img {
+    width: 250px;
+}
+div {
+    border: 5px solid red;
+}

@@ -61,7 +61,9 @@ console.log(userData);
 
 console.log(typeof userData.age);
 
-console.log(typeof userData)
+console.log(typeof userData);
 
-const num = 1234567890123456789n
-console.log(num)
+const num = 1234567890123456789n;
+console.log(num);
+
+console.log(typeof userData.name);
