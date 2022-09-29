@@ -1,0 +1,41 @@
+body{
+    margin: 0;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    width: 1140px;
+    margin: 0 auto;
+}
+
+header {
+  background: pink;
+}
+
+.main-menu {
+  background: skyblue;
+}
+
+.main-menu-list{
+    list-style: none;
+}
+
+section {
+  background: orange;
+}
+
+.section-item{
+    background: peachpuff;
+}
+
+.sidebar-right{
+    background: greenyellow;
+}
+
+footer{
+    background: plum;
+}
