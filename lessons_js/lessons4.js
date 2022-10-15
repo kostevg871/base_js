@@ -107,12 +107,11 @@ let day = 1;
 
 while (true) {
   N = N / 2;
-  console.log(N)
   if (N < M) {
     console.log(day);
     break;
   }
-  day++
+  day++;
 }
 
 for (let i = 1; ; i++) {
@@ -127,12 +126,14 @@ let iteration = 1;
 let countLeapYear = 0;
 const firstYear = 1800;
 const lastYear = 2022;
+let lastIteration;
+let lastLeapYear;
 
 for (let year = firstYear; year <= lastYear; year++) {
   if (year === 1961) {
     console.log(`Первый полет в космос ${year}`);
     console.log(
-      `количество итерации  до нахождения года первого полета в космос ${iteration}`
+      `Количество итерации  до нахождения года первого полета в космос ${iteration}`
     );
   }
 
@@ -144,11 +145,14 @@ for (let year = firstYear; year <= lastYear; year++) {
     } else {
       countLeapYear++;
     }
+    lastIteration = iteration;
+    lastLeapYear = year;
   }
 
-  if (year === 2022) {
-    console.log(`Количество високосных годов ${countLeapYear}`);
-    console.log(`Количество итераций високосных годов ${iteration}`);
+  if (year === lastYear) {
+    console.log(`Количество высокосных годов ${countLeapYear}`);
+    console.log(`Количество итераций высокосных годов ${lastIteration}`);
+    console.log(`Последний высокосный год ${lastLeapYear}`);
   }
 
   iteration++;
