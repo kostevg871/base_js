@@ -1,0 +1,34 @@
+/* общие стили */
+body {
+  margin: 0;
+}
+.container {
+  width: 1140px;
+  margin: 0 auto;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+/* стили хедера */
+.header-top,
+.header-borrom {
+  border-bottom: 1px solid #dedede;
+}
+.header-top-info{
+    display: flex;
+    justify-content: space-between;
+}
+.top-menu{
+    width: 945px;
+    display: flex;
+    justify-content: space-between;
+}
+.top-menu-list-left{
+    display: flex;
+    list-style: none;
+}
+.top-menu-list-right{
+    display: flex;
+    list-style: none;
+}
