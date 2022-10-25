@@ -380,4 +380,4 @@ let polindromeFunc = (strPolin) =>{
   return true;
 };
 
-console.log(polindromeFunc("lololol"));
+// console.log(polindromeFunc("lololol"));
