@@ -1,0 +1,29 @@
+
+
+body{
+    margin: 0;
+}
+
+.pink{
+    background: pink;
+    display: flex;
+    flex-wrap: wrap;
+}
+.green{
+    background: green;
+    padding: 10px;
+    margin: 10px;
+    box-sizing: border-box;
+    width: calc(25% - 20px);
+}
+@media (max-width: 991px) {
+    .green{
+        width: calc(50% - 20px);
+    }
+}
+
+@media(max-width: 575px){
+    .green{
+        width: calc(100% - 20px);
+    }
+}

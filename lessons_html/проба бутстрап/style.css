@@ -1,0 +1,16 @@
+.pink{
+    background: pink;
+}
+
+.green{
+    background: aquamarine;
+    border: 1px solid black;
+}
+
+.bg-mynav{
+    background-color: blueviolet;
+}
+
+.btn-outline-my{
+    background-color: yellow;
+}
