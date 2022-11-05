@@ -105,3 +105,55 @@
 // for(let value in obj){
 //     console.log(obj[value])
 // }
+
+//practice
+// 1
+
+const obj = [1, 2, 3];
+const objCopyAssign = Object.assign([], obj);
+const objCopySpreed = [...obj];
+
+// console.log(obj, "obj1 before");
+// console.log(objCopyAssign, "obj1Assign before");
+// console.log(objCopySpreed, "obj1Spreed before");
+
+objCopyAssign.push(7);
+objCopySpreed.push(8);
+
+// console.log(obj, "obj1 after");
+// console.log(objCopyAssign, "obj1Assign after");
+// console.log(objCopySpreed, "obj1Spreed after");
+
+//2
+const sumEven = (...args) => {
+  let result = 0;
+  for (let elem of args) {
+    if (elem % 2 === 0) {
+      result += elem;
+    }
+  }
+  return result;
+};
+
+// console.log(sumEven(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+
+//3
+const arrElementEquals = (arr1, arr2) => {
+  let result = [];
+  for (let elem1 of arr1) {
+    for (let elem2 of arr2) {
+      if (elem1 === elem2) {
+        result.push(elem1);
+        arr1.shift(elem1)
+      }
+    }
+  }
+  return result;
+};
+
+console.log(
+  arrElementEquals(
+    [1, 5, 3, 5, 6, 74, 66, 55, 44],
+    [5, 4, 75, 74, 44, 222, 2, 1231]
+  )
+);
