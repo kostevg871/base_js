@@ -234,3 +234,115 @@ const initSnake = (str) => {
 };
 
 // console.log(initSnake("CamelCase CamelCase"));
+
+//13 Напишите функцию repeatStr(str, n), которая возвращает строку повторяемую определённое количество раз.
+
+const repeatStr = (str, n) => {
+  return str.repeat(n);
+};
+
+// console.log(repeatStr("Lol ", 5));
+
+//14 Напишите функцию path(pathname), которая возвращает имя файла (подстрока после последнего символа "\" ) из полного пути к файлу.
+
+const path = (pathname) => {
+  let name = pathname.split("/").pop();
+  return name;
+};
+
+// console.log(path(`C://Users/Jeka_/Desktop/js_learn/js/lessons_js`));
+
+// 15 Создайте функцию endsWith(), который сравнивает подстроку str1 с окончанием исходной строки str и определяет заканчивается ли строка символами подстроки.
+
+const endsWith = (str, str1) => {
+  const lenAll = str.length - str1.length;
+  if (lenAll >= 0) {
+    if (str.slice(-str1.length) == str1) {
+      return true;
+    }
+  }
+  return false;
+};
+
+// console.log(endsWith("каждый знает", "ый знает"));
+
+//16 Напишите функцию getSubstr(str, char, pos), которая возвращает часть строки, расположенную после или до указанного символа char в зависимости от параметра pos.
+
+const getSubstr = (str, char, pos) => {
+  const index = str.indexOf(char);
+  if (pos > 0) {
+    return str.substring(index + 1, index + pos);
+  } else {
+    return str.substring(index, index + pos - 1);
+  }
+};
+
+// console.log(getSubstr("привет", "в", -3));
+
+// 17 Напишите функцию insert(str, substr, pos), которая вставляет подстроку substr в указанную позицию pos строки str. По умолчанию подстрока вставляется в начало строки.
+
+const insert = (str, substr, pos = 0) => {
+  let array = str.split("");
+  array.splice(pos, 0, substr);
+  return array.join("");
+};
+
+// console.log(insert("Привет", "Вася"));
+// console.log(insert("Привет", "Вася", 3));
+// console.log(insert("Привет", "Вася", 6));
+
+// 18 Напишите функцию limitStr(str, n, symb), которая обрезает строку, если она длиннее указанного количества символов n. Усеченная строка должна заканчиваться троеточием «...» (если не задан параметр symb) или заданным символом symb.
+
+const limitStr = (str, n, symb = "...") => {
+  if (str.length > n) {
+    const slStr = str.slice(0, n);
+    return insert(slStr, symb, n);
+  } else {
+    return str;
+  }
+};
+
+// console.log(limitStr("Напишите функцию", 5));
+// console.log(limitStr("Напишите функцию", 100));
+// console.log(limitStr("Напишите функцию", 11, "?"));
+
+// 19 Напишите функцию count(str, stringsearch), которая возвращает количество символов stringsearch в строке str.
+
+const count = (str, stringsearch) => {
+  let countIter = 0;
+  for (const iterator of stringsearch) {
+    str.includes(iterator) ? countIter++ : countIter + 0;
+  }
+  return countIter;
+};
+
+// console.log(count("Привет", "вер"));
+
+// 20 Напишите функцию strip(str), которая удаляет все лишние пробелы из строки str.
+
+const strip = (str) => {
+  return str.trim().replace(/\s+/g, " ");
+};
+
+// console.log(strip("  lo    l "))
+
+// 21 Напишите функцию cutString(str, n), которая удаляет лишние слова из строки str, оставив в ней n слов.
+
+const cutString = (strCut, n) => {
+  return strCut.split(" ").splice(0, n).join(" ");
+};
+// console.log(cutString("seaeae asease asease sfdfds dfsdfs", 2));
+
+// 22 Напишите функцию findWord(word, str), которая проверяет, существует ли в строке str слова word.
+
+const findWord = (word, str) => {
+  const arrayWord = word.split(" ");
+  for (const wordOfArray of arrayWord) {
+    if (!str.includes(wordOfArray)) {
+      return false;
+    }
+  }
+  return true;
+};
+
+// console.log(findWord("привет я ты мы", "ямыпривет"));
