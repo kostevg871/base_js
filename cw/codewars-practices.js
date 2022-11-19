@@ -134,6 +134,7 @@ function arrayDiff(a, b) {
 // ["Max", "John", "Mark"]           -->  "Max, John and Mark like this"
 // ["Alex", "Jacob", "Mark", "Max"]  -->  "Alex, Jacob and 2 others like this"
 
+//6
 function likes(names) {
   let result;
   switch (names.length) {
