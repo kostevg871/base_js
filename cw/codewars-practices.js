@@ -1,4 +1,4 @@
-// Complete the solution so that it splits the string into pairs of two characters. If the string contains an odd number of characters 
+// Complete the solution so that it splits the string into pairs of two characters. If the string contains an odd number of characters
 // then it should replace the missing second character of the final pair with an underscore ('_').
 
 // * 'abc' =>  ['ab', 'c_']
@@ -122,10 +122,10 @@ function arrayDiff(a, b) {
 
 // console.log(arrayDiff([1, 2, 3], [1, 2])); //[3]
 
-// Вы, наверное, знаете систему «лайков» из Facebook и других страниц. Люди могут «лайкать» сообщения в блогах, изображения 
+// Вы, наверное, знаете систему «лайков» из Facebook и других страниц. Люди могут «лайкать» сообщения в блогах, изображения
 // или другие элементы. Мы хотим создать текст, который должен отображаться рядом с таким элементом.
 
-// Реализуйте функцию, которая принимает массив, содержащий имена людей, которым понравился элемент. Он должен возвращать отображаемый 
+// Реализуйте функцию, которая принимает массив, содержащий имена людей, которым понравился элемент. Он должен возвращать отображаемый
 // текст, как показано в примерах:
 
 // []                                -->  "no one likes this"
@@ -139,22 +139,73 @@ function likes(names) {
   let result;
   switch (names.length) {
     case 0:
-      result = "no one likes this"
+      result = "no one likes this";
       break;
     case 1:
-      result = `${names.join()} likes this`
+      result = `${names.join()} likes this`;
       break;
     case 2:
-      result = `${names.join(" and ")} like this`
+      result = `${names.join(" and ")} like this`;
       break;
     case 3:
-      result = `${names[0]}, ${names[1]} and ${names[2]} like this`
+      result = `${names[0]}, ${names[1]} and ${names[2]} like this`;
       break;
     default:
-      result = `${names[0]}, ${names[1]} and ${names.length - 2} others like this`
+      result = `${names[0]}, ${names[1]} and ${
+        names.length - 2
+      } others like this`;
       break;
   }
   return result;
 }
 
 // console.log(likes(["Peter"]));
+
+//7
+// Подсчитайте количество дубликатов
+// Напишите функцию, которая будет возвращать количество различных буквенных символов и цифр,
+// не зависящих от регистра, которые встречаются во входной строке более одного раза.
+// Можно предположить, что входная строка содержит только буквы (как прописные, так и строчные) и числовые цифры.
+
+function duplicateCount(text) {
+  let count = 0;
+  text = text.toUpperCase();
+  let unicText = text
+    .split("")
+    .filter((element, index) => {
+      return text.indexOf(element) === index;
+    })
+    .join("");
+
+  for (const iterator of unicText) {
+    if (text.split(iterator).length - 1 > 1) {
+      count++;
+    }
+  }
+  return count;
+}
+
+// console.log(duplicateCount("aabBcDe11"));
+
+// 8 
+// Напишите функцию, которая принимает строку скобок и определяет, допустим ли порядок скобок.
+// Функция должна возвращать trueзначение, если строка действительна и falseнедействительна.
+
+function validParentheses(parens) {
+  let countOpen = 0;
+  for (const iterator of parens) {
+    console.log(1);
+    if (iterator === "(") {
+      countOpen++;
+    } else {
+      countOpen = countOpen - 1;
+    }
+    if (countOpen < 0) {
+      return false;
+    }
+  }
+  if (countOpen !== 0) return false;
+  return true;
+}
+
+// console.log(validParentheses("(())((()())())"));
