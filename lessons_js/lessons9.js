@@ -82,11 +82,11 @@ bound("country", "France");
 // 1. Что выведет функция?
 
 function f() {
- alert(this);
+  alert(this);
 }
 
 let userh1 = {
- g: f.bind(null),
+  g: f.bind(null),
 };
 
 // userh1.g();
@@ -262,3 +262,53 @@ function func(surname, name) {
 //  });
 
 //  console.log( bound.test );
+
+// Замыканние
+
+function example() {
+  let closure = 100;
+  return function (b) {
+    return closure + b;
+  };
+}
+
+const closureExample = example();
+
+const cubeValue = (a) => {
+  return (b, c) => {
+    return a * b * c;
+  };
+};
+
+const first = cubeValue(10);
+
+// console.log(first(10,10));
+// console.log(first(2,5));
+// console.log(first(5,7))
+
+const second = cubeValue(4);
+// console.log(second(10,10));
+// console.log(second(2,5));
+// console.log(second(5,7))
+
+// Каррирование
+const cubeValueCar = (a, b, c) => a * b * c;
+
+// console.log(cubeValueCar(1, 3, 3));
+
+const cubeValueCary = (a) => {
+  return (b) => {
+    return (c) => {
+      return a * b * c;
+    };
+  };
+};
+
+const cubeValueCaryVar2 = (a) => (b) => (c) => a * b * c;
+
+// console.log(cubeValueCary(1)(3)(3));
+const twoArgs = cubeValueCary(1)(3);
+
+// console.log(twoArgs(3));
+// console.log(twoArgs(4));
+// console.log(twoArgs(5));
