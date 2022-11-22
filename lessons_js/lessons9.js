@@ -312,3 +312,22 @@ const twoArgs = cubeValueCary(1)(3);
 // console.log(twoArgs(3));
 // console.log(twoArgs(4));
 // console.log(twoArgs(5));
+
+// *8
+// Реализовать таймер-функцию используя замыкания.
+// Функция принимает два  аргумента начальное значение и значение завершения.
+// Таймер движется назад.
+// При достижении точки завершения в консоль выводится значение таймера и сообщение о завершении работы таймера.
+
+const timer = (start, end) => {
+  let startend = end - start;
+  if (startend === 0) {
+    console.log("Таймер закончился");
+  } else {
+    end -= 1;
+    console.log(`Осталось ${startend} сек`);
+    return setTimeout(timer, 1000, start, end );
+  }
+};
+
+// timer(1, 15);
