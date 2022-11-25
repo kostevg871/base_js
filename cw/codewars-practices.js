@@ -187,14 +187,13 @@ function duplicateCount(text) {
 
 // console.log(duplicateCount("aabBcDe11"));
 
-// 8 
+// 8
 // Напишите функцию, которая принимает строку скобок и определяет, допустим ли порядок скобок.
 // Функция должна возвращать trueзначение, если строка действительна и falseнедействительна.
 
 function validParentheses(parens) {
   let countOpen = 0;
   for (const iterator of parens) {
-    console.log(1);
     if (iterator === "(") {
       countOpen++;
     } else {
@@ -209,3 +208,45 @@ function validParentheses(parens) {
 }
 
 // console.log(validParentheses("(())((()())())"));
+
+//9
+
+// Формат для выражения упорядоченного списка целых чисел заключается в использовании списка, разделенного запятыми, либо
+// отдельные целые числа
+// или диапазон целых чисел, обозначенный начальным целым числом, отделенным от конечного целого числа в диапазоне дефисом «-».
+// Диапазон включает все целые числа в интервале, включая обе конечные точки. Он не считается диапазоном, если он не охватывает как минимум 3 числа.
+// Например "12,13,15-17"
+// // Завершите решение так, чтобы оно принимало список целых чисел в порядке возрастания и возвращало правильно отформатированную строку в
+// формате диапазона.
+
+// Пример:
+
+// solution([-10, -9, -8, -6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20]);
+// returns "-10--8,-6,-3-1,3-5,7-11,14,15,17-20"
+
+function solution1(list) {
+  let result = [];
+  let slice = [];
+  for (let i = 0; i <= list.length - 1; i++) {
+    if (list[i + 1] === list[i] + 1) {
+      slice.push(list[i]);
+    } else if (slice.length >= 2) {
+      let stringSlice = `${slice[0]}-${list[i]}`;
+      result.push(stringSlice);
+      slice = [];
+    } else if (slice.length < 2 && slice.length !== 0) {
+      slice.push(list[i]);
+      result.push(slice.join(","));
+      slice = [];
+    } else {
+      result.push(list[i]);
+    }
+  }
+  return result.join(",");
+}
+
+// console.log(
+//   solution1([
+//     -6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20,
+//   ])
+// );
