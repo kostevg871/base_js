@@ -275,7 +275,49 @@ function orderWeight(strng) {
     let sumB = sum(b);
     return sumA === sumB ? a.localeCompare(b) : sumA - sumB;
   }
-  return strng.split(" ").sort(compare).join(" ")
+  return strng.split(" ").sort(compare).join(" ");
 }
 
-console.log(orderWeight("2000 10003 1234000 44444444 9999 11 11 22 123"));
+// console.log(orderWeight("2000 10003 1234000 44444444 9999 11 11 22 123"));
+
+// 11
+// Завершите решение так,
+// чтобы оно разбило строку на пары из двух символов. Если строка содержит
+// нечетное количество символов, то отсутствующий второй символ последней пары должен быть заменен
+// символом подчеркивания ('_').
+
+function solution11(str) {
+  const result = [];
+  for (let i = 0; i < str.length; i = i + 2) {
+    if (str[i + 1]) {
+      result.push(str[i] + str[i + 1]);
+    } else {
+      result.push(str[i] + "_");
+    }
+  }
+  return result;
+}
+
+// console.log(solution11("adc"));
+
+// 12
+// Напишите функцию, которая принимает строку из одного или нескольких слов и возвращает
+// ту же строку, но с перевернутыми всеми словами из пяти или более букв (точно так же, как имя этого Ката).
+// Передаваемые строки будут состоять только из букв и пробелов. Пробелы будут включены только в том случае,
+// если присутствует более одного слова.
+
+function spinWords(string) {
+  string = string.split(" ");
+  const result = [];
+  for (let i = 0; i < string.length; i++) {
+    let strLen = string[i].length;
+    if (strLen >= 5) {
+      result.push(string[i].split("").reverse().join(""));
+    } else {
+      result.push(string[i]);
+    }
+  }
+  return result.join(" ");
+}
+
+console.log(spinWords("This is another test")); 
