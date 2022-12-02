@@ -320,4 +320,90 @@ function spinWords(string) {
   return result.join(" ");
 }
 
-console.log(spinWords("This is another test")); 
+// console.log(spinWords("This is another test"));
+
+//13
+// Маркетинговая команда тратит слишком много времени на ввод хэштегов.
+// Давайте поможем им с нашим генератором хэштегов!
+
+// Вот сделка:
+
+// Он должен начинаться с хэштега ( #).
+// Во всех словах первая буква должна быть заглавной.
+// Если окончательный результат длиннее 140 символов, он должен вернуть false.
+// Если ввод или результат представляет собой пустую строку, она должна возвращаться false.
+function generateHashtag(str) {
+  const result = [];
+  str = str.toLowerCase();
+  if (str.trim() === "") {
+    return false;
+  } else {
+    const hash = str.replace(/\s+/g, " ").trim().split(" ");
+    hash.forEach((element) => {
+      let strElem = element[0].toUpperCase() + `${element.slice(1)}`;
+      result.push(strElem);
+    });
+    let strResult = `#${result.join("")}`;
+    if (strResult.length > 140) {
+      return false;
+    } else {
+      return strResult;
+    }
+  }
+}
+
+// console.log(generateHashtag("    Hello     World   "));
+
+//14
+
+// Пит любит печь торты. У него есть рецепты и ингредиенты. К сожалению, он не силен в математике.
+// Поможешь ему узнать, сколько тортов он сможет испечь, учитывая его рецепты?
+
+// Напишите функцию cakes(), которая принимает рецепт (объект) и доступные ингредиенты (тоже объект)
+// и возвращает максимальное количество пирожных, которые Пит может испечь (целое число).
+// Для простоты нет единиц измерения количества (например, 1 фунт муки или 200 г сахара — это просто 1 или 200).
+// Ингредиенты, отсутствующие в объектах, можно считать равными 0.
+
+function cakes(recipe, available) {
+  let currCount;
+
+  for (const key in recipe) {
+    if (available[key]) {
+      let equalsReceptAvalable = Math.floor(available[key] / recipe[key] || 0);
+      if (!currCount || equalsReceptAvalable < currCount) {
+        currCount = equalsReceptAvalable;
+      }
+    } else {
+      return 0;
+    }
+  }
+  return currCount;
+}
+
+// console.log(
+//   cakes(
+//     { flour: 500, sugar: 200, eggs: 1, apple: 0 },
+//     { flour: 0, sugar: 0, eggs: 0 }
+//   )
+// );
+
+//15
+
+// Учитывая список целых чисел и одно значение суммы,
+// верните первые два значения (анализируйте слева)
+// в порядке появления, которые в сумме образуют сумму.
+
+// Если имеется две или более пар с требуемой суммой,
+//  то решением является пара, второй элемент которой имеет наименьший индекс.
+
+let sum_pairs=function(ints, s){
+  let seen = {}
+  for (let i = 0; i < ints.length; ++i) {
+    if (seen[s - ints[i]]) return [s - ints[i], ints[i]];
+    console.log(seen[ints[i]]);
+    seen[ints[i]] = true
+    console.log(seen);
+  }
+}
+
+// console.log(sum_pairs([10, 5, 2, 3, 7, 5], 10)); 
