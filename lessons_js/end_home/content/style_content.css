@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  width: 1140px;
+  background-color: bisque;
+  justify-content: center;
+}
+
+.container_content {
+  justify-content: center;
+  align-items: center;
+}
+
+.list {
+  justify-content: center;
+  align-items: center;
+}

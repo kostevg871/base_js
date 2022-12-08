@@ -1,9 +1,15 @@
-// wrapper
+import { header } from "./header/index_header.js";
+import { container as content } from "./content/content.js";
+// import { footer } from "./footer/footer.js";
 
-let wrapper = document.createElement("wrapper");
-document.body.prepend(wrapper);
+const wrapper = document.createElement("wrapper");
 wrapper.className = "wrapper";
+wrapper.style.display = "flex"
+wrapper.style.flexDirection = "column"
+wrapper.style.alignItems = "center"
 
-let header = document.createElement("header");
-header.className = "header";
+document.body.prepend(wrapper);
 wrapper.prepend(header);
+wrapper.append(content);
+// header.prepend(header_text);
+// wrapper.append(footer);
