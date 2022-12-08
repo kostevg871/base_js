@@ -444,4 +444,20 @@ function longest(s1, s2) {
 // let a = "xyaabbbccccdefww";
 // let b = "xxxxyyyyabklmopq";
 
-// console.log(longest(a, b)); 
+// console.log(longest(a, b));
+
+// 18
+
+// Вам дадут слово. Ваша задача — вернуть средний символ слова.
+// Если длина слова нечетная, вернуть средний символ.
+// Если длина слова четная, верните средние 2 символа.
+
+function getMiddle(s) {
+  if(s.length % 2 != 0){
+    return s.slice(s.length/2, s.length/2+1)
+  }else{
+    return s.slice(Math.floor(s.length/2)-1,Math.ceil(s.length/2)+1)
+  }
+}
+
+// console.log(getMiddle("testing"));
