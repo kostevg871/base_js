@@ -396,14 +396,52 @@ function cakes(recipe, available) {
 // Если имеется две или более пар с требуемой суммой,
 //  то решением является пара, второй элемент которой имеет наименьший индекс.
 
-let sum_pairs=function(ints, s){
-  let seen = {}
+let sum_pairs = function (ints, s) {
+  let seen = {};
   for (let i = 0; i < ints.length; ++i) {
     if (seen[s - ints[i]]) return [s - ints[i], ints[i]];
     console.log(seen[ints[i]]);
-    seen[ints[i]] = true
+    seen[ints[i]] = true;
     console.log(seen);
+  }
+};
+
+// console.log(sum_pairs([10, 5, 2, 3, 7, 5], 10));
+
+//16
+
+// Напишите функцию , persistence которая принимает положительный параметр num
+// и возвращает его мультипликативную постоянство, то есть количество раз,
+// которое вы должны умножить на цифры, numпока не получите одну цифру.
+
+function persistence(num, count = 0) {
+  let stringNum = num.toString();
+  let numLenght = stringNum.length;
+  if (numLenght == 1) {
+    return count;
+  } else {
+    count += 1;
+    num = stringNum.split("").reduce((accum, curr) => accum * curr, 1);
+    return persistence(num, count);
   }
 }
 
-// console.log(sum_pairs([10, 5, 2, 3, 7, 5], 10)); 
+// console.log(persistence(999));
+
+//17
+
+// Возьмите 2 строки s1и s2включите только буквы от aдо z.
+//  Возвращает новую отсортированную строку, максимально длинную, содержащую различные буквы
+//  (каждая из которых взята только один раз) из s1 или s2.
+
+function longest(s1, s2) {
+  const arrStringSort = (s1 + s2).split("").sort();
+  const makeRes = (arr) => [...new Set(arr)];
+  const res = makeRes(arrStringSort);
+  return res.join("");
+}
+
+// let a = "xyaabbbccccdefww";
+// let b = "xxxxyyyyabklmopq";
+
+// console.log(longest(a, b)); 
