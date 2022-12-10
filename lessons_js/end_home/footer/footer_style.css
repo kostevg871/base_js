@@ -1,4 +1,5 @@
 footer{
     height: 100px;
     color: red;
+    justify-content: space-between;
 }

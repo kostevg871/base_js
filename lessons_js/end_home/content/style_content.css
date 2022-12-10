@@ -1,11 +1,7 @@
-.container {
-  display: flex;
-  width: 1140px;
-  background-color: bisque;
-  justify-content: center;
-}
+
 
 .container_content {
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
