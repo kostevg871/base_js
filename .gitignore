@@ -1,1 +1,3 @@
 lessons_pro_js/npm_test/node_modules/
+**/node_modules
+/build
