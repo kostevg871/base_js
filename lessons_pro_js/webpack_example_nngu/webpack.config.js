@@ -19,8 +19,16 @@ module.exports = {
     path: path.resolve(__dirname, "./build"),
     filename: "[name].bundle.js",
     clean: true,
+    assetModuleFilename: "assets/[hash][ext][query]",
   },
 
+  mode: process.env.mode,
+  // devtool: "source-map",
+  devServer: {
+    open: true,
+    hot: true,
+    port: 3000,
+  },
   plugins,
 
   module: {
@@ -29,6 +37,17 @@ module.exports = {
       {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg|webp|ico)$/i,
+        type: process.env.MODE === "production" ? "asset" : "asset/resource",
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+        },
       },
     ],
   },
