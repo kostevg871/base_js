@@ -536,3 +536,66 @@ function firstNonRepeatingLetter(s) {
 }
 
 //console.log(firstNonRepeatingLetter("moonmen"));
+
+//* 21
+
+/*Вы собираетесь в путешествие с несколькими студентами, и вам решать, сколько денег есть у каждого студента. Студент определяется так:
+
+class Student {
+	constructor(name, fives, tens, twenties) {
+	  this.name = name;
+	  this.fives = fives;
+	  this.tens = tens;
+	  this.twenties = twenties;
+	}
+  }
+  Как видите, у каждого ученика есть пятерки, десятки и двадцатки. Ваша задача вернуть имя студента с наибольшим количеством денег. Если у всех студентов одинаковая сумма, верните "all".
+  
+  Примечания:
+  У каждого ученика будет уникальное имя
+  Всегда будет явный победитель: либо у одного человека больше, либо у всех одинаковое количество.
+  Если есть только один студент, то у этого студента больше всего денег*/
+
+class Student {
+  constructor(name, fives, tens, twenties) {
+    this.name = name;
+    this.fives = fives;
+    this.tens = tens;
+    this.twenties = twenties;
+  }
+}
+
+const andy = new Student("Andy", 0, 0, 2);
+const stephen = new Student("Stephen", 0, 4, 0);
+const eric = new Student("Eric", 8, 1, 0);
+const david = new Student("David", 2, 0, 1);
+const phil = new Student("Phil", 0, 2, 1);
+const cam = new Student("Cameron", 2, 2, 0);
+const geoff = new Student("Geoff", 0, 3, 0);
+
+function mostMoney(students) {
+  let studentNameArray = [];
+  let currentMoney = 0;
+  if (students.length === 1) {
+    return students[0].name;
+  }
+  for (let i = 0; i < students.length; i++) {
+    let moneyStudent =
+      students[i].fives * 5 + students[i].twenties * 20 + students[i].tens * 10;
+
+    if (moneyStudent === currentMoney) {
+      studentNameArray.push(students[i].name);
+    } else if (moneyStudent > currentMoney) {
+      studentNameArray = [];
+      currentMoney = moneyStudent;
+      studentNameArray.push(students[i].name);
+    }
+  }
+  if (studentNameArray.length === 1) {
+    return studentNameArray[0];
+  } else {
+    return "all";
+  }
+}
+
+//console.log(mostMoney([andy, stephen, eric, david, phil]));
