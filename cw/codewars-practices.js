@@ -599,3 +599,20 @@ function mostMoney(students) {
 }
 
 //console.log(mostMoney([andy, stephen, eric, david, phil]));
+
+// 22
+
+/*
+Напишите алгоритм, который берет массив и перемещает все нули в конец, сохраняя порядок остальных элементов.
+
+moveZeros([false,1,0,1,2,0,1,3,"a"]) // returns[false,1,1,2,1,3,"a",0,0]
+*/
+
+function moveZeros(arr) {
+  const arrZero = arr.filter((el) => el === 0);
+  const arrNoZero = arr.filter((el) => el !== 0);
+
+  return arrNoZero.concat(arrZero);
+}
+
+console.log(moveZeros([false, 1, 0, 1, 2, 0, 1, 3, "a"]));
