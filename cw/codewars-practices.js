@@ -616,3 +616,43 @@ function moveZeros(arr) {
 }
 
 //console.log(moveZeros([false, 1, 0, 1, 2, 0, 1, 3, "a"]));
+
+// ! 23
+
+/* О нет, наш объект Math был "случайно" сброшен. Можете ли вы 
+повторно реализовать некоторые из этих функций? Мы можем гарантировать, что 
+в качестве аргументов передаются только неотрицательные числа. Таким образом, 
+вам не нужно учитывать такие вещи, как undefined, null, NaN, отрицательные числа, 
+строки и так далее.
+
+Вот список функций, которые нам понадобятся: 
+Math.round = function(number) {
+  return 0; 
+};
+
+Math.ceil = function(number) {
+  return 0; 
+};
+
+Math.floor = function(number) {
+  return 0; 
+};
+
+*/
+Math.round = function (number) {
+  return number - parseInt(number) >= 0.5
+    ? parseInt(number) + 1
+    : parseInt(number);
+};
+
+Math.ceil = function (number) {
+  return parseInt(number) === number ? number : parseInt(number) + 1;
+};
+
+Math.floor = function (number) {
+  return parseInt(number);
+};
+
+//console.log(Math.round(7));
+//console.log(Math.ceil(1));
+//console.log(Math.floor(0.5));
