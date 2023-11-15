@@ -656,3 +656,5 @@ Math.floor = function (number) {
 //console.log(Math.round(7));
 //console.log(Math.ceil(1));
 //console.log(Math.floor(0.5));
+
+console.log(Boolean(""));
