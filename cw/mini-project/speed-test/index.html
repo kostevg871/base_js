@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Speed test</title>
+  </head>
+  <body>
+    <div class="container">
+      <svg viewBox="-250 -250 500 290" width="200">
+        <g class="arrow">
+          <path d="M-18,-10 0,-150 18,-10" fill="#FFDAB9" />
+          <circle r="20" fill="#FFDAB9" />
+        </g>
+
+        <g class="scale">
+          <circle
+            r="200"
+            fill="none"
+            stroke="#FFDAB9"
+            stroke-width="20"
+            class="frequency"
+          />
+        </g>
+
+        <path
+          d="m-220 0 a120 -120 0 0 1 440 0"
+          fill="none"
+          stroke="#FFDAB9"
+          stroke-width="0"
+          id="path"
+        />
+
+        <text font-size="20px" x="5" fill="#FFDAB9">
+          <textPath href="#path">0</textPath>
+        </text>
+
+        <text font-size="20px" x="335" fill="#FFDAB9">
+          <textPath href="#path">10</textPath>
+        </text>
+
+        <text font-size="20px" x="650" fill="#FFDAB9">
+          <textPath href="#path">20</textPath>
+        </text>
+
+        <text
+          id="num"
+          fill="#FFDAB9"
+          text-anchor="middle"
+          alignment-baseline="central"
+          y="-100"
+          font-size="50"
+        >
+          0
+        </text>
+      </svg>
+      <p id="info"><span>...</span></p>
+      <p id="mbs"><span>Speed in Mbs:</span></p>
+      <p id="kbs"><span>Speed in Kbs:</span></p>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
