@@ -1,0 +1,64 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.App {
+  margin: 0px;
+  padding: 0px;
+  background-color: #282c34;
+  height: 100vh;
+}
+
+.App-header {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  background-color: #2f4062;
+}
+
+.names {
+  font-size: large;
+}
+
+.Nav-header {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.Menu {
+  display: flex;
+  gap: 15px;
+  list-style-type: none;
+  justify-content: space-between;
+}
+
+ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Menu li {
+  flex-grow: 1;
+}
+
+.board-row {
+  display: flex;
+}
+
+.square {
+  height: 100px;
+  width: 100px;
+  font-size: 50px;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 0px;
+}
+
+.status {
+  font-size: 75px;
+  color: aliceblue;
+}
