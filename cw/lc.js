@@ -77,3 +77,35 @@ var reduce = function (nums, fn, init) {
 //    0
 //  )
 //);
+
+//4 Easy
+/*Напишите функцию  expect, которая поможет разработчикам тестировать свой код. Он должен принимать любое значение  val
+и возвращать объект с помощью следующих двух функций.
+
+toBe(val) принимает другое значение и возвращает значение,  
+true если эти два значения  === друг друга. Если они не равны, должна возникнуть ошибка  "Not Equal".
+notToBe(val) принимает другое значение и возвращает значение,  true если эти два значения 
+!== друг друга. Если они равны, должна возникнуть ошибка  "Equal".*/
+
+var expect = function (val) {
+  function toBe(valToBe) {
+    if (val === valToBe) {
+      return true;
+    } else {
+      throw new Error("Not Equal");
+    }
+  }
+
+  function notToBe(valNotToBe) {
+    if (val !== valNotToBe) {
+      return true;
+    } else {
+      throw new Error("Equal");
+    }
+  }
+
+  return { toBe, notToBe };
+};
+
+//console.log(expect(5).toBe(null));
+//console.log(expect(5).notToBe(null));
