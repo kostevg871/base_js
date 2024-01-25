@@ -228,3 +228,139 @@ var isEmpty = function (obj) {
 };
 
 //console.log(isEmpty([]));
+
+//8 Easy
+/*  Вам дана строка с индексом 0word , состоящая из строчных английских букв. 
+Вам нужно выбрать один индекс и удалить букву в этом индексе word, чтобы частота появления каждой буквы wordбыла одинаковой.
+Возвращает, если можно удалить одну букву, чтобы частота всех букв была одинаковой, и в противном случае . truewordfalse
+Примечание:
+
+Частота буквы — это количество раз, когда она встречается в строке .x
+Вы должны удалить ровно одну букву и не можете ничего не делать. */
+
+var equalFrequency = function (word) {
+  let result = new Map();
+  for (let i = 0; i <= word.length - 1; i++) {
+    let wordkey = word[i];
+    if (result.has(wordkey)) {
+      result.set(wordkey, result.get(wordkey) + 1);
+    } else {
+      result.set(wordkey, 1);
+    }
+  }
+
+  let output = false;
+  result.forEach((value, key) => {
+    const newMap = new Map(result);
+    if (value === 1) {
+      newMap.delete(key);
+    } else {
+      newMap.set(key, newMap.get(key) - 1);
+    }
+    if (new Set([...newMap.values()]).size === 1) output = true;
+  });
+  return output;
+};
+
+//console.log(equalFrequency("bac"));
+
+//9 Easy
+
+/*Напишите функцию  argumentsLength, 
+которая возвращает количество переданных ей аргументов. */
+
+var argumentsLength = function (...args) {
+  return args.length;
+};
+
+//console.log(argumentsLength());
+
+//10 Easy Добавьте два обещания
+/* Учитывая два обещания promise1и promise2, верните новое
+ обещание. promise1и promise2 оба будут разрешены с помощью числа. Возвращенное 
+ обещание должно разрешиться как сумма двух чисел.
+*/
+
+var addTwoPromises = async function (promise1, promise2) {
+  return Promise.all([promise1, promise2]).then(
+    (values) => values[0] + values[1]
+  );
+};
+
+//addTwoPromises(Promise.resolve(2), Promise.resolve(2)).then(console.log); // 4
+
+//11 Easy Отмена таймаута
+/*
+Учитывая функцию fn, массив аргументов  argsи тайм-аут  t в миллисекундах, верните функцию отмены cancelFn.
+
+После задержки , будет вызвана cancelTimeMsвозвращенная функция отмены .cancelFn
+
+setTimeout (cancelFn, cancelTimeMs)
+Изначально выполнение функции fnдолжно задерживаться на tмиллисекунды.
+
+tЕсли функция вызывается до задержки в миллисекундах cancelFn, она должна отменить отложенное выполнение fn. 
+В противном случае, если cancelFnон не будет вызван в течение указанной задержки t, fnон должен быть выполнен с указанными argsаргументами.
+*/
+
+var cancellable = function (fn, args, t) {
+  let timer = setTimeout(() => fn(...args), t);
+
+  let cancelFn = () => clearTimeout(timer);
+  return cancelFn;
+};
+
+//const result = [];
+
+//const fn = (x) => x * 5;
+//const args = [2],
+//  t = 20,
+//  cancelTimeMs = 50;
+
+//const start = performance.now();
+
+//const log = (...argsArr) => {
+//  const diff = Math.floor(performance.now() - start);
+//  result.push({ time: diff, returned: fn(...argsArr) });
+//};
+
+//const cancel = cancellable(log, args, t);
+
+//const maxT = Math.max(t, cancelTimeMs);
+
+//setTimeout(cancel, cancelTimeMs);
+
+//setTimeout(() => {
+//  console.log(result); // [{"time":20,"returned":10}]
+//}, maxT + 15);
+
+// 11 Easy Обертка массива
+
+/*
+Создайте класс  ArrayWrapper, который принимает в своем конструкторе массив целых чисел. Этот класс должен иметь две особенности:
+
+Когда два экземпляра этого класса складываются вместе с  + оператором, результирующее значение представляет собой сумму 
+всех элементов в обоих массивах.
+Когда  String() функция вызывается в экземпляре, она возвращает строку, 
+разделенную запятыми, заключенную в квадратные скобки. Например, [1,2,3].
+*/
+
+class ArrayWrapper {
+  constructor(nums) {
+    this.array = nums;
+  }
+
+  valueOf() {
+    return this.array.reduce((arr, curr) => arr + curr, 0);
+  }
+
+  toString() {
+    return `[${this.array.join(",")}]`;
+  }
+}
+
+//const obj1 = new ArrayWrapper([[23, 98, 42, 70]]);
+//const obj2 = new ArrayWrapper([3, 4]);
+
+//console.log(obj1 + obj2); // 10
+//console.log(String(obj1)); // "[1,2]"
+//console.log(String(obj2)); // "[3,4]"
