@@ -527,4 +527,29 @@ var intToRoman = function (num) {
   return r;
 };
 
-console.log(intToRoman("449"));
+//console.log(intToRoman("449"));
+
+// 17 (14) Easy Longest Common Prefix
+
+/*
+Напишите функцию для поиска самой длинной строки общего префикса среди массива строк.
+
+Если общего префикса нет, верните пустую строку "".
+*/
+
+var longestCommonPrefix = function (strs) {
+  let result = "";
+  if (!strs.length) return "";
+  let minStr = Math.min(...strs.map((str) => str.length));
+  for (let i = 0; i < minStr; i++) {
+    let char = strs[0][i];
+    if (strs.every((str) => str[i] === char)) {
+      result += char;
+    } else {
+      break;
+    }
+  }
+  return result;
+};
+
+console.log(longestCommonPrefix(["flower", "flow", "flight"]));
