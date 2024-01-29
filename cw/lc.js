@@ -458,3 +458,33 @@ var isPalindrome = function (x) {
 };
 
 //console.log(isPalindrome(10));
+
+//15 (13) От римского к целому числу
+/*
+Дана римская цифра, преобразуйте ее в целое число.
+*/
+
+var romanToInt = function (s) {
+  const mapRoman = new Map([
+    ["I", 1],
+    ["V", 5],
+    ["X", 10],
+    ["L", 50],
+    ["C", 100],
+    ["D", 500],
+    ["M", 1000],
+  ]);
+  let result = 0;
+  for (let i = 0; i < s.length; i++) {
+    let curr = mapRoman.get(`${s[i]}`);
+
+    if (curr < mapRoman.get(`${s[i + 1]}`)) {
+      result = result - curr;
+    } else {
+      result = result + curr;
+    }
+  }
+  return result;
+};
+
+//console.log(romanToInt("LVIII"));
