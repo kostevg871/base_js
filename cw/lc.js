@@ -364,3 +364,97 @@ class ArrayWrapper {
 //console.log(obj1 + obj2); // 10
 //console.log(String(obj1)); // "[1,2]"
 //console.log(String(obj2)); // "[3,4]"
+
+//12 Easy two sum
+
+/*Учитывая массив целых чисел nums и целое число target, верните индексы двух чисел так, чтобы их сумма составляла target .
+
+Вы можете предположить, что каждый вход будет иметь ровно одно решение , и вы не можете использовать один и тот же элемент дважды.
+
+Вы можете вернуть ответ в любом порядке. */
+
+var twoSum = function (nums, target) {
+  for (let i = 0; i <= nums.length; i++) {
+    for (let j = 0; j <= nums.length; j++) {
+      let result;
+      if (i === j) continue;
+      result = nums[i] + nums[j];
+      if (result === target) {
+        return [i, j];
+      }
+      result = 0;
+    }
+  }
+};
+
+//var twoSum = function (nums, target) {
+//  let map = new Map();
+
+//  for (let i = 0; i < nums.length; i++) {
+//    if (map.has(target - nums[i])) {
+//      return [map.get(target - nums[i]), i];
+//    } else {
+//      map.set(nums[i], i);
+//    }
+//  }
+//  return [];
+//};
+
+//var twoSum = function (nums, target) {
+//  let hash = {};
+
+//  for (let i = 0; i < nums.length; i++) {
+//    const n = nums[i];
+//    if (hash[target - n] !== undefined) {
+//      return [hash[target - n], i];
+//    }
+//    hash[n] = i;
+//  }
+//  return [];
+//};
+
+//13 (2). Добавь два числа Medium
+
+/*Вам даны два непустых связанных списка, представляющих два неотрицательных целых числа. 
+Цифры хранятся в обратном порядке , и каждый из их узлов содержит одну цифру. Сложите два числа и верните сумму в виде связанного списка.
+Вы можете предположить, что эти два числа не содержат ведущих нулей, кроме самого числа 0. */
+
+var addTwoNumbers = function (l1, l2) {
+  return add(l1, l2, 0);
+
+  function add(l1, l2, carry) {
+    const v1 = (l1 && l1.val) || 0;
+    const v2 = (l2 && l2.val) || 0;
+    const sum = v1 + v2 + carry;
+
+    const newCarry = Math.floor(sum / 10);
+    const val = sum % 10;
+    return l1 || l2 || carry
+      ? { val, next: add(l1 && l1.next, l2 && l2.next, newCarry) }
+      : null;
+  }
+};
+
+//console.log(addTwoNumbers([9, 9, 9, 9, 9, 9, 9], [9, 9, 9, 9]));
+
+// 14 (9) Число полиндром
+/*
+Учитывая целое число x, верните true if x
+палиндром, и false иначе .
+*/
+
+var isPalindrome = function (x) {
+  const xString = x.toString();
+  const xArray = xString.split("");
+  if (x < 0) {
+    return false;
+  }
+
+  if (xArray.reverse().join("") === xString) {
+    return true;
+  }
+
+  return false;
+};
+
+//console.log(isPalindrome(10));
