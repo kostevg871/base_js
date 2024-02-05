@@ -552,4 +552,30 @@ var longestCommonPrefix = function (strs) {
   return result;
 };
 
-console.log(longestCommonPrefix(["flower", "flow", "flight"]));
+//console.log(longestCommonPrefix(["flower", "flow", "flight"]));
+
+//18 (20) Easy Valid Parentheses
+/*
+Учитывая строку s, содержащую только символы '(', ')', '{', и '}', определите, является ли входная строка допустимой.'['']'
+
+Входная строка действительна, если:
+Открытые скобки должны закрываться скобками того же типа.
+Открытые скобки должны закрываться в правильном порядке.
+Каждой закрывающей скобке соответствует открытая скобка того же типа.
+*/
+
+const valueS = { "(": ")", "[": "]", "{": "}" };
+
+var isValid = function (s) {
+  let stack = [];
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === "{" || s[i] === "[" || s[i] === "(") {
+      stack.push(s[i]);
+    } else if (valueS[stack.pop()] !== s[i]) {
+      return false;
+    }
+  }
+  return stack.length === 0;
+};
+
+//console.log(isValid("{{{}{}}}}"));

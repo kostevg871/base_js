@@ -657,4 +657,12 @@ Math.floor = function (number) {
 //console.log(Math.ceil(1));
 //console.log(Math.floor(0.5));
 
-console.log(Boolean(""));
+//console.log(Boolean(""));
+
+function areYouPlayingBanjo(name) {
+  if (name[0].toLowerCase() === "r") {
+    return name + " plays banjo";
+  } else {
+    return name + " does not play banjo";
+  }
+}
