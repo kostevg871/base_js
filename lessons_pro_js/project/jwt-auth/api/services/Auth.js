@@ -10,6 +10,7 @@ import {
 import RefreshSessionsRepository from "../repositories/RefreshSession.js";
 import UserRepository from "../repositories/User.js";
 import { ACCESS_TOKEN_EXPIRATION } from "../constants.js";
+import RefreshSessionRepository from "../repositories/RefreshSession.js";
 
 class AuthService {
   static async signIn({ userName, password, fingerprint }) {
@@ -80,7 +81,56 @@ class AuthService {
     await RefreshSessionsRepository.deleteRefreshSession(refreshToken);
   }
 
-  static async refresh({ fingerprint, currentRefreshToken }) {}
+  static async refresh({ fingerprint, currentRefreshToken }) {
+    if (!currentRefreshToken) {
+      throw new Unauthorized();
+    }
+
+    const RefreshSession = await RefreshSessionRepository.getRefreshSession(
+      currentRefreshToken
+    );
+
+    if (!RefreshSession) {
+      throw new Unauthorized();
+    }
+
+    if (RefreshSession.finger_print !== fingerprint.hash) {
+      throw new Forbidden();
+    }
+
+    await RefreshSessionRepository.deleteRefreshSession(currentRefreshToken);
+
+    let payload;
+
+    try {
+      payload = await TokenService.verifyRefreshToken(currentRefreshToken);
+    } catch (error) {
+      throw new Forbidden(error);
+    }
+
+    const {
+      id,
+      role,
+      name: userName,
+    } = await UserRepository.getUserData(payload.userData);
+
+    const actualpayload = { id, userName, role };
+
+    const accessToken = await TokenService.generateAccessToken(actualpayload);
+    const refreshToken = await TokenService.generateRefreshToken(actualpayload);
+
+    await RefreshSessionRepository.createRefreshSession({
+      id,
+      refreshToken,
+      fingerprint,
+    });
+
+    return {
+      accessToken,
+      refreshToken,
+      accessTokenExpiration: ACCESS_TOKEN_EXPIRATION,
+    };
+  }
 }
 
 export default AuthService;

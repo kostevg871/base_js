@@ -1,7 +1,18 @@
 import pool from "../db.js";
 
 class RefreshSessionRepository {
-  static async getRefreshSession(refreshToken) {}
+  static async getRefreshSession(refreshToken) {
+    const responce = await pool.query(
+      "SELECT * FROM refresh_sessions WHERE refresh_token=$1",
+      [refreshToken]
+    );
+
+    if (!responce.rows.length) {
+      return null;
+    }
+
+    return responce.rows[0];
+  }
 
   static async createRefreshSession({ id, refreshToken, fingerprint }) {
     await pool.query(

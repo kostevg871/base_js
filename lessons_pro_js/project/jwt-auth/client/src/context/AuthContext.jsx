@@ -33,6 +33,8 @@ ResourceClient.interceptors.request.use(
 export const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
+  const [isAppReady, setIsAppReady] = useState(false);
+  const [isUserLogged, setIsUserLogged] = useState(false);
   const [data, setData] = useState();
 
   const handleFetchProtected = () => {
@@ -47,6 +49,7 @@ const AuthProvider = ({ children }) => {
     AuthClient.post("/logout")
       .then(() => {
         inMemoryJWT.deleteToken();
+        setIsUserLogged(false);
       })
       .catch(showErrorMessage);
   };
@@ -57,6 +60,7 @@ const AuthProvider = ({ children }) => {
         const { accessToken, accessTokenExpiration } = res.data;
 
         inMemoryJWT.setToken(accessToken, accessTokenExpiration);
+        setIsUserLogged(true);
       })
       .catch(showErrorMessage);
   };
@@ -67,9 +71,26 @@ const AuthProvider = ({ children }) => {
         const { accessToken, accessTokenExpiration } = res.data;
 
         inMemoryJWT.setToken(accessToken, accessTokenExpiration);
+
+        setIsUserLogged(true);
       })
       .catch(showErrorMessage);
   };
+
+  useEffect(() => {
+    AuthClient.post("/refresh")
+      .then((res) => {
+        const { accessToken, accessTokenExpiration } = res.data;
+        inMemoryJWT.setToken(accessToken, accessTokenExpiration);
+
+        setIsAppReady(true);
+        setIsUserLogged(true);
+      })
+      .catch(() => {
+        setIsAppReady(true);
+        setIsUserLogged(false);
+      });
+  }, []);
 
   return (
     <AuthContext.Provider
@@ -79,9 +100,17 @@ const AuthProvider = ({ children }) => {
         handleSignUp,
         handleSignIn,
         handleLogOut,
+        isAppReady,
+        isUserLogged,
       }}
     >
-      {children}
+      {isAppReady ? (
+        children
+      ) : (
+        <div className={style.centered}>
+          <Circle />
+        </div>
+      )}
     </AuthContext.Provider>
   );
 };

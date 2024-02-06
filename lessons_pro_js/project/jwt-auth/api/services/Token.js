@@ -26,16 +26,23 @@ class TokenService {
       return next(new Unauthorized());
     }
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (error, user) => {
-      console.log(error, user);
+    try {
+      req.user = await TokenService.verifyAccessToken(token);
+      console.log(req.user);
+    } catch (err) {
+      console.log(err);
+      return next(new Forbidden(err));
+    }
 
-      if (error) {
-        return next(new Forbidden(error));
-      }
+    next();
+  }
 
-      req.user = user;
-      next();
-    });
+  static async verifyAccessToken(accessToken) {
+    return await jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+  }
+
+  static async verifyRefreshToken(refreshToken) {
+    return await jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
   }
 }
 
