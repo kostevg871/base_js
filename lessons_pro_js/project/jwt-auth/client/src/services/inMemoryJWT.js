@@ -7,7 +7,11 @@ const inMemoryJWTServices = () => {
     inMemoryJWT = token;
   };
 
-  return { getToken, setToken };
+  const deleteToken = () => {
+    inMemoryJWT = null;
+  };
+
+  return { getToken, setToken, deleteToken };
 };
 
 export default inMemoryJWTServices();

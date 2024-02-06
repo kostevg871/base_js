@@ -43,7 +43,13 @@ const AuthProvider = ({ children }) => {
       .catch(showErrorMessage);
   };
 
-  const handleLogOut = () => {};
+  const handleLogOut = () => {
+    AuthClient.post("/logout")
+      .then(() => {
+        inMemoryJWT.deleteToken();
+      })
+      .catch(showErrorMessage);
+  };
 
   const handleSignUp = (data) => {
     AuthClient.post("/sign-up", data)
