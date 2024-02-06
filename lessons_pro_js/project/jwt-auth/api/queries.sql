@@ -14,3 +14,5 @@ CREATE TABLE refresh_sessions(
 
 SELECT * FROM users;
 SELECT * FROM refresh_sessions;
+
+--.\psql -U postgres -p 5433
