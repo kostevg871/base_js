@@ -4,9 +4,15 @@ import { COOKIE_SETTINGS } from "../constants.js";
 
 class AuthController {
   static async signIn(req, res) {
+    const { userName, password } = req.body;
     const { fingerprint } = req;
     try {
-      return res.sendStatus(200);
+      const { accessToken, refreshToken, accessTokenExpiration } =
+        await AuthService.signIn({ userName, password, fingerprint });
+
+      res.cookie("refreshToken", refreshToken, COOKIE_SETTINGS.REFRESH_TOKEN);
+
+      return res.status(200).json({ accessToken, accessTokenExpiration });
     } catch (err) {
       return ErrorsUtils.catchError(res, err);
     }
