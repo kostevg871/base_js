@@ -11,12 +11,37 @@ export const AuthClient = axios.create({
   withCredentials: true,
 });
 
+const ResourceClient = axios.create({
+  baseURL: `${config.API_URL}/resource`,
+});
+
+ResourceClient.interceptors.request.use(
+  (config) => {
+    const accessToken = inMemoryJWT.getToken();
+
+    if (accessToken) {
+      config.headers["Authorization"] = `Bearer ${accessToken}`;
+    }
+
+    return config;
+  },
+  (error) => {
+    Promise.reject(error);
+  }
+);
+
 export const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
   const [data, setData] = useState();
 
-  const handleFetchProtected = () => {};
+  const handleFetchProtected = () => {
+    ResourceClient.get("/protected")
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch(showErrorMessage);
+  };
 
   const handleLogOut = () => {};
 
