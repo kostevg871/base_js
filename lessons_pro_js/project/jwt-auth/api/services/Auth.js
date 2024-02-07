@@ -95,6 +95,7 @@ class AuthService {
     }
 
     if (RefreshSession.finger_print !== fingerprint.hash) {
+      console.log("Попытка несанкционированного обновления токенов");
       throw new Forbidden();
     }
 

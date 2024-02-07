@@ -92,6 +92,21 @@ const AuthProvider = ({ children }) => {
       });
   }, []);
 
+  useEffect(() => {
+    const handlePersistedLogOut = (event) => {
+      if (event.key === config.LOGOUT_STORAGE_KEY) {
+        inMemoryJWT.deleteToken();
+        setIsUserLogged(false);
+      }
+    };
+
+    window.addEventListener("storage", handlePersistedLogOut);
+
+    return () => {
+      window.removeEventListener("storage", handlePersistedLogOut);
+    };
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{
