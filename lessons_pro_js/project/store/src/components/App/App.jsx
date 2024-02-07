@@ -21,7 +21,6 @@ const App = () => {
         <Sidebar />
         <AppRoutes />
       </div>
-
       <Footer />
     </div>
   );
