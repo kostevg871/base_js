@@ -579,3 +579,180 @@ var isValid = function (s) {
 };
 
 //console.log(isValid("{{{}{}}}}"));
+
+var summaryRanges = function (nums) {
+  let result = [];
+  let leftD = nums[0];
+
+  for (let i = 0; i < nums.length; i++) {
+    if (Math.abs(nums[i] - nums[i + 1]) !== 1) {
+      if (nums[i] === leftD) {
+        result.push(`${leftD}`);
+      } else {
+        result.push(`${leftD}->${nums[i]}`);
+      }
+      leftD = nums[i + 1];
+    }
+  }
+  return result;
+};
+
+//console.log(summaryRanges([0, 1, 2, 4, 5, 7]));
+
+//404
+
+const tree = {
+  val: 3,
+  left: {
+    val: 9,
+    left: null,
+    right: null,
+  },
+  right: {
+    val: 20,
+    left: {
+      val: 15,
+      right: null,
+      left: null,
+    },
+    right: {
+      val: 7,
+      right: null,
+      left: null,
+    },
+  },
+};
+
+const tree1 = {
+  val: 3,
+  left: {
+    val: 9,
+    left: null,
+    right: null,
+  },
+  right: {
+    val: 20,
+    left: {
+      val: 15,
+      right: null,
+      left: null,
+    },
+    right: {
+      val: 7,
+      right: null,
+      left: null,
+    },
+  },
+};
+
+var sumOfLeftLeaves = function (root) {
+  const getLeftTreeValuesRecur = (root, result = []) => {
+    if (root.left === null && root.right === null) {
+      return result;
+    }
+    if (root.left) {
+      if (root.left.left === null && root.left.right === null) {
+        result.push(root.left.val);
+      }
+      getLeftTreeValuesRecur(root.left, result);
+    }
+
+    if (root.right) {
+      getLeftTreeValuesRecur(root.right, result);
+    }
+
+    return result;
+  };
+
+  return getLeftTreeValuesRecur(root).reduce(
+    (curr, result) => curr + result,
+    0
+  );
+};
+
+//console.log(sumOfLeftLeaves(tree));
+
+const strAr = "aaccderaa";
+//2a2cder2a
+
+let strNumber = (str) => {
+  let result = [];
+  let count = 1;
+  for (let i = 0; i <= str.length; i++) {
+    if (str[i] === str[i + 1]) {
+      count++;
+    }
+    if (str[i] !== str[i + 1]) {
+      if (count === 1) {
+        result.push(`${str[i]}`);
+      } else {
+        result.push(`${count}${str[i]}`);
+      }
+
+      count = 1;
+    }
+  }
+  return result.join("");
+};
+
+//console.log(strNumber(strAr));
+
+//const getBankomat = (cash) => {
+//    const newCash = { ...cash }
+//    return (value) => { ...calk }
+//}
+
+//const bancomat = getBankomat({})
+//bancomat(1200)
+//bancomat(300)
+//bancomat(200)
+//bancomat(2200)
+
+//1346
+var destCity = function (paths) {
+  const hash = new Map(paths);
+
+  for (const to of hash.values()) {
+    if (!hash.has(to)) return to;
+  }
+};
+
+const graph = [
+  ["Лондон", "Нью-Йорк"],
+  ["Нью-Йорк", "Лима"],
+  ["Лима", "Сан-Паулу"],
+];
+const paths = [["A", "Z"]];
+
+//console.log(destCity(graph));
+
+// Задача про банкомат
+
+let iWantMoney = (needSumm, limits) => {
+  function collect(amount, nominals) {
+    if (amount === 0) return {};
+    if (!nominals.length) return;
+
+    let currNum = nominals[0];
+    let availableNots = limits[currNum];
+    let notesNeeded = Math.floor(amount / currNum);
+    let numberOfNotes = Math.min(availableNots, notesNeeded);
+
+    for (let i = numberOfNotes; i >= 0; i--) {
+      let result = collect(amount - i * currNum, nominals.slice(1));
+
+      if (result) {
+        return i ? { [currNum]: i, ...result } : result;
+      }
+    }
+  }
+
+  let nominals = Object.keys(limits)
+    .map(Number)
+    .sort((a, b) => b - a);
+
+  return collect(needSumm, nominals);
+};
+
+let limits = { 5000: 3, 1000: 5, 500: 2, 100: 5, 50: 100, 10: 6 };
+console.log(iWantMoney(230, limits));
