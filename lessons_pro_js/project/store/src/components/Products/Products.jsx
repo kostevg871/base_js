@@ -14,7 +14,12 @@ const Products = ({ title, products = [], amound, style = {} }) => {
           <Link to={`/products/${id}`} key={id} className={styles.product}>
             <div
               className={styles.image}
-              style={{ backgroundImage: `url(${images[0]})` }}
+              style={{
+                backgroundImage: `url(${images[0].slice(
+                  1,
+                  images.length - 2
+                )})`,
+              }}
             />
             <div className={styles.wrapper}>
               <h3 className={styles.title}>{title}</h3>
@@ -23,7 +28,7 @@ const Products = ({ title, products = [], amound, style = {} }) => {
                 <div className={styles.prices}>
                   <div className={styles.price}>{price}$</div>
                   <div className={styles.oldPrice}>
-                    {Math.floor(price * 0.8)}$
+                    {Math.floor(price * 1.2)}$
                   </div>
                 </div>
                 <div className={styles.purchases}>
