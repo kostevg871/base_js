@@ -3,17 +3,16 @@ import React from "react";
 import styles from "../../styles/Sidebar.module.css";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { categoriesSelect } from "../../features/categories/selectors";
 
 const Sidebar = () => {
-  const list = useSelector(({ categories }) =>
-    categories.list.filter((_, i) => i < 7)
-  );
+  const list = useSelector(categoriesSelect);
   return (
     <section className={styles.sidebar}>
       <div className={styles.title}>CATEGORIES</div>
       <nav>
         <ul className={styles.menu}>
-          {list.map(({ id, name }) => (
+          {list?.slice(0, 5).map(({ id, name }) => (
             <li key={id}>
               <NavLink
                 className={({ isActive }) =>

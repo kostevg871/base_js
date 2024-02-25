@@ -1,36 +1,24 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Poster from "../Poster/Poster";
 import Products from "../Products/Products";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Categories from "../Categories/Categories";
 import Banner from "../Banner/Banner";
-import { filterByPrice } from "../../features/products/productSlice";
+
+import { categoriesSelect } from "../../features/categories/selectors";
+import { productSelect } from "../../features/products/selectors";
 
 const Home = () => {
-  const dispatch = useDispatch();
-  //  const categories = useSelector(({ categories }) => categories.list);
-  //  const products = useSelector(({ products }) => products.list);
-  const {
-    products: { list, filtered },
-    categories,
-  } = useSelector((state) => state);
+  const categories = useSelector(categoriesSelect);
+  const products = useSelector(productSelect);
 
-  useEffect(() => {
-    if (!list.length) return;
-
-    dispatch(filterByPrice(100));
-  }, [dispatch, list.length]);
   return (
     <>
       <Poster />
-      <Products products={list} amound={5} title="Treading" />
-      <Categories
-        categories={categories.list}
-        amound={5}
-        title="Worth seeing"
-      />
+      <Products products={products} amound={5} title="Treading" />
+      <Categories categories={categories} amound={5} title="Worth seeing" />
       <Banner />
-      <Products products={filtered} amound={5} title="Less then 100$" />
+      <Products products={products} amound={5} title="Less then 100$" />
     </>
   );
 };

@@ -12,14 +12,10 @@ const Products = ({ title, products = [], amound, style = {} }) => {
       <div className={styles.list}>
         {list.map(({ id, images, title, category: { name: cat }, price }) => (
           <Link to={`/products/${id}`} key={id} className={styles.product}>
-            <div
+            <img
               className={styles.image}
-              style={{
-                backgroundImage: `url(${images[0].slice(
-                  1,
-                  images.length - 2
-                )})`,
-              }}
+              src={images[0].replace(/["'[\]]/g, "")}
+              alt={title}
             />
             <div className={styles.wrapper}>
               <h3 className={styles.title}>{title}</h3>
