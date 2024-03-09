@@ -26,10 +26,10 @@ const Home = () => {
   return (
     <>
       <Poster />
-      <Products products={products} amound={5} title="Treading" />
+      <Products products={products} amound={4} title="Treading" />
       <Categories categories={categories} amound={5} title="Worth seeing" />
       <Banner />
-      <Products products={productsFiltered} amound={5} title="Less then 100$" />
+      <Products products={productsFiltered} amound={4} title="Less then 100$" />
     </>
   );
 };
