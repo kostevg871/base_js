@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "../../styles/Product.module.css";
 import { ROUTES } from "../../utils/routes";
 import { Link } from "react-router-dom";
+import { imageReplace } from "../../utils/helpers/imageReplace";
 
 const SIZES = [4, 4.5, 5];
 
-const Product = ({ images, title, price, description }) => {
-  const currentImage = images[0].replace(/["'[\]]/g, "");
+const Product = ({ images, title, price, description, purchase }) => {
+  const [currentImage, setCurrentImage] = useState();
+  const [currentSize, setCurrentSize] = useState();
+
+  useEffect(() => {
+    if (!images.length) return;
+    setCurrentImage(imageReplace(images[0]));
+  }, [images]);
 
   return (
     <section className={styles.product}>
@@ -22,9 +29,9 @@ const Product = ({ images, title, price, description }) => {
               key={i}
               className={styles.image}
               style={{
-                backgroundImage: `url(${image.replace(/["'[\]]/g, "")})`,
+                backgroundImage: `url(${imageReplace(image)})`,
               }}
-              onClick={() => {}}
+              onClick={() => setCurrentImage(imageReplace(image))}
             />
           ))}
         </div>
@@ -40,7 +47,13 @@ const Product = ({ images, title, price, description }) => {
           <span>Sizes:</span>
           <div className={styles.list}>
             {SIZES.map((size) => (
-              <div className={`${styles.size}`} onClick={() => {}} key={size}>
+              <div
+                className={`${styles.size} ${
+                  currentSize === size ? styles.active : ""
+                }`}
+                onClick={() => setCurrentSize(size)}
+                key={size}
+              >
                 {size}
               </div>
             ))}
@@ -49,12 +62,14 @@ const Product = ({ images, title, price, description }) => {
 
         <p className={styles.description}>{description}</p>
         <div className={styles.actions}>
-          <button className={styles.add}>Add to card</button>
-          <button className={styles.favorite}>Add to favorite</button>
+          <button className={styles.add} disabled={!currentSize}>
+            Add to card
+          </button>
+          <button className={styles.favourite}>Add to favorite</button>
         </div>
 
         <div className={styles.bottom}>
-          <div>{Math.floor(Math.random() * 20)} people purchase</div>
+          <div>{purchase} people purchase</div>
           <Link to={ROUTES.HOME}>Return to store</Link>
         </div>
       </div>
