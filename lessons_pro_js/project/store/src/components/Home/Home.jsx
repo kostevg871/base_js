@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Poster from "../Poster/Poster";
 import Products from "../Products/Products";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Categories from "../Categories/Categories";
 import Banner from "../Banner/Banner";
 
 import { categoriesSelect } from "../../features/categories/selectors";
-import { productSelect } from "../../features/products/selectors";
+import {
+  productFilteredSelect,
+  productSelect,
+} from "../../features/products/selectors";
+import { filterByPrice } from "../../features/products/productSlice";
 
 const Home = () => {
+  const dispacth = useDispatch();
   const categories = useSelector(categoriesSelect);
   const products = useSelector(productSelect);
+  const productsFiltered = useSelector(productFilteredSelect);
+
+  useEffect(() => {
+    if (!products.length) return;
+    dispacth(filterByPrice(981));
+  }, [dispacth, products.length]);
 
   return (
     <>
@@ -18,7 +29,7 @@ const Home = () => {
       <Products products={products} amound={5} title="Treading" />
       <Categories categories={categories} amound={5} title="Worth seeing" />
       <Banner />
-      <Products products={products} amound={5} title="Less then 100$" />
+      <Products products={productsFiltered} amound={5} title="Less then 100$" />
     </>
   );
 };
