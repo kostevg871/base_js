@@ -20,7 +20,7 @@ const SingleProduct = () => {
     <section className="preloader">Loading...</section>
   ) : (
     <>
-      <Product {...data} />
+      <Product purchase={Math.floor(Math.random() * 20)} {...data} />
     </>
   );
 };
