@@ -6,3 +6,8 @@ export const productSelect = createSelector(
   getProductsSlice,
   (data) => data.list
 );
+
+export const productFilteredSelect = createSelector(
+  getProductsSlice,
+  (data) => data.filtered
+);
