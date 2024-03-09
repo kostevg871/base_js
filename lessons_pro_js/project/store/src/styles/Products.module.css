@@ -6,6 +6,7 @@
 .list {
   margin-top: 24px;
   display: flex;
+  justify-content: space-between;
   gap: 20px;
   flex-wrap: wrap;
 }
@@ -21,11 +22,11 @@
   background: var(--bg);
   border-radius: 8px;
   overflow: hidden;
-  width: calc(100% / 5 - 20px);
+  width: calc(100% / 4 - 20px);
 }
 
 .product:nth-child(5n) {
-  width: calc(100% / 5);
+  width: calc(100% / 4);
 }
 
 .image {
