@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "../../styles/Product.module.css";
 import placeholder from "../../images/placeholder.png";
-import { imageReplace } from "../../utils/helpers/imageReplace";
 import { TailSpin } from "react-loader-spinner";
 
 export const Image = ({ images, title }) => {
@@ -14,7 +13,7 @@ export const Image = ({ images, title }) => {
       <img
         style={{ visibility: loading ? "hiden" : "visible" }}
         className={styles.image}
-        src={isError ? placeholder : imageReplace(images[0])}
+        src={isError ? placeholder : images[0]}
         alt={title}
         onError={() => setIsError(true)}
         onLoad={() => setLoading(false)}
