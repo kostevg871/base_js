@@ -1,5 +1,4 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { getRelatedProducts } from "./productSlice";
 
 const getProductsSlice = (state) => state.products;
 

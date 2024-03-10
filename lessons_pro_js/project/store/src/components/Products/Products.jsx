@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import styles from "../../styles/Products.module.css";
+import { Image } from "../../components/Image/Image";
 
 const Products = ({ title, products = [], amound, style = {} }) => {
   const list = products.filter((_, i) => i < amound);
@@ -13,11 +14,7 @@ const Products = ({ title, products = [], amound, style = {} }) => {
         <div className={styles.list}>
           {list.map(({ id, images, title, category: { name: cat }, price }) => (
             <Link to={`/products/${id}`} key={id} className={styles.product}>
-              <img
-                className={styles.image}
-                src={images[0].replace(/["'[\]]/g, "")}
-                alt={title}
-              />
+              <Image title={title} images={images} />
               <div className={styles.wrapper}>
                 <h3 className={styles.title}>{title}</h3>
                 <div className={styles.cat}>{cat}</div>
