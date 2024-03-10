@@ -42,6 +42,13 @@
   cursor: pointer;
 }
 
+.spinWrapper {
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .title {
   font-size: 18px;
   line-height: 22px;
