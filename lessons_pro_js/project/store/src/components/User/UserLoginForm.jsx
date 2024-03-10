@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import styles from "../../styles/User.module.css";
 import { useDispatch } from "react-redux";
-import { createUser } from "../../features/user/userSlice";
+import { loginUser } from "../../features/user/userSlice";
 
-const UserSignupForm = ({ toggleCurrentFormType, closeForm }) => {
+const UserLoginForm = ({ toggleCurrentFormType, closeForm }) => {
   const dispatch = useDispatch();
   const [values, setValues] = useState({
-    name: "",
     email: "",
     password: "",
-    avatar: "",
   });
 
   const handleChange = ({ target: { value, name } }) => {
@@ -22,7 +20,7 @@ const UserSignupForm = ({ toggleCurrentFormType, closeForm }) => {
     const isEmpty = Object.values(values).some((val) => !val);
     if (isEmpty) return;
 
-    dispatch(createUser(values));
+    dispatch(loginUser(values));
     closeForm();
   };
 
@@ -34,20 +32,9 @@ const UserSignupForm = ({ toggleCurrentFormType, closeForm }) => {
         </svg>
       </div>
 
-      <div className={styles.title}>Sign Up</div>
+      <div className={styles.title}>Login</div>
 
       <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.group}>
-          <input
-            type="name"
-            name="name"
-            placeholder="Your name"
-            value={values.name}
-            autoComplete="off"
-            onChange={handleChange}
-            required
-          />
-        </div>
         <div className={styles.group}>
           <input
             type="email"
@@ -72,31 +59,19 @@ const UserSignupForm = ({ toggleCurrentFormType, closeForm }) => {
           />
         </div>
 
-        <div className={styles.group}>
-          <input
-            type="avatar"
-            name="avatar"
-            placeholder="Your avatar"
-            value={values.avatar}
-            autoComplete="off"
-            onChange={handleChange}
-            required
-          />
-        </div>
-
         <div
           className={styles.lisk}
-          onClick={() => toggleCurrentFormType("login")}
+          onClick={() => toggleCurrentFormType("signup")}
         >
-          I already have an account
+          Create an Account
         </div>
 
         <button type="submit" className={styles.submit}>
-          Create an account
+          Log in
         </button>
       </form>
     </div>
   );
 };
 
-export default UserSignupForm;
+export default UserLoginForm;
