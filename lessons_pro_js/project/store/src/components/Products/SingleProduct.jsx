@@ -15,7 +15,6 @@ const SingleProduct = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  //  const { related } = useSelector(({ products }) => products);
   const related = useSelector(productReleatedSelect);
   const list = useSelector(productSelect);
 

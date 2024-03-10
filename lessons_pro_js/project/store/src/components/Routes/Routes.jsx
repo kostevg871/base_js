@@ -5,12 +5,14 @@ import Home from "../Home/Home";
 import SingleProduct from "../Products/SingleProduct";
 
 import { ROUTES } from "../../utils/routes";
+import Profile from "../Profile/Profile";
 
 const AppRoutes = () => {
   return (
     <Routes>
       <Route index element={<Home />} />
       <Route path={ROUTES.PRODUCT} element={<SingleProduct />} />
+      <Route path={ROUTES.PROFILE} element={<Profile />} />
     </Routes>
   );
 };
